@@ -33,6 +33,8 @@ public class SetDemo1 {
 		while(hi.hasNext()) {
 			System.out.println(hi.next());
 		}
-		
+		if(hi.hasNext()) {
+			while(hi.hasNext()) {System.out.println(hi.next());
+		}else { System.out.println("false");}
 	}
 }
