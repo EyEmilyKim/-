@@ -42,6 +42,34 @@ class Person2<T,S>{
 	}//제네릭은 메서드에도 적용할 수 있다.
 }
 
+/* 제네릭으로 올 수 있는 타입을 특정 클래스의 자식으로 제한 */
+abstract class Info_c{
+	public abstract int getLevel();
+}
+class PlayerInfo_c extends Info_c{
+	public int level;
+	PlayerInfo_c(int level){ this.level = level; }
+	public int getLevel() { return this.level;	}
+}
+class Person_c<T extends Info_c>{
+	public T info;
+	Person_c(T info){ this.info = info; }
+}
+
+/* 제네릭으로 올 수 있는 타입을 특정 인터페이스의 자식으로 제한 */
+interface Info_i{
+	int getLevel();
+}
+class PlayerInfo_i implements Info_i{
+	public int level;
+	PlayerInfo_i(int level){ this.level = level; }
+	public int getLevel() { return this.level;	}
+}
+class Person_i<T extends Info_i>{
+	public T info;
+	Person_i(T info){ this.info = info; }
+}
+
 
 public class GenericDemo {
 	public static void main(String[] args) {
@@ -87,8 +115,8 @@ public class GenericDemo {
  */
 
 //		Person2<EmployeeInfo,int> p5 = new Person2<EmployeeInfo,int>(new EmplyeeInfo(1),1);
-		//이 코드는 예외를 발생시킨다.
-		//제네릭은 참조형에 대해서만 사용할 수 있다!
+		//↑이 코드는 예외를 발생시킨다.
+		//제네릭은 참조형에 대해서만 사용할 수 있으므로 int대신 Integer다!↓
 		EmployeeInfo e = new EmployeeInfo(1);
 		Integer i = new Integer(2);
 		Person2<EmployeeInfo, Integer> p5 = new Person2<EmployeeInfo, Integer>(e,i);
@@ -103,8 +131,16 @@ public class GenericDemo {
 		p6.<EmployeeInfo>printInfo(e1);
 		p6.printInfo(e1);
 		//제네릭 적용된 메서드 호출. 
-		//여기서도 Type은 생략 가능, [103]와[104]가 같다.
+		//여기서도 Type은 생략 가능, 위 두 줄이 같다.
 		
-				
+		Person_c p7 = new Person_c(new PlayerInfo_c(7));
+		System.out.println("Person_c p7 컴파일 성공");
+//		Person_c p8 = new Person_c("고수");
+		//제네릭에서 타입을 Info_c의 하위클래스로 제한했으므로, String 인자는 컴파일 안됨.		
+		Person_i p9 = new Person_i(new PlayerInfo_i(7));
+		System.out.println("Person_i p9 컴파일 성공");
+//		Person_i p10 = new Person_i("고수");
+		//제네릭에서 타입을 Info_i를 구현한 클래스로 제한했으므로 String 인자는 컴파일 안됨.		
+		
 	}
 }
