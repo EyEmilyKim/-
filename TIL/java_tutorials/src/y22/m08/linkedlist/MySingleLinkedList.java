@@ -22,12 +22,21 @@ public class MySingleLinkedList<T> {
 		head = newNode;
 		size++;
 		/* 예외 확인 */
-		//기존의 연결리스트의 크기가 0인경우, 즉 head가 null인 경우도 문제 없음을 확인.
+		//기존의 연결리스트의 크기가 0인 경우, 즉 head가 null인 경우도 문제 없음을 확인.
+	}
+	public void addAfter(Node<T> before, T item) {
+		Node<T> temp = new Node<T>(item);
+		temp.next = before.next;
+		before.next = temp;
+		size++;
+		/* 예외 확인 */
+		//before가 하필 마지막 node인 경우, before.next가 null인 경우도 문제 없음을 확인.
 	}
 	
 	public void add(int index, T item) {//insert
 		
 	}
+	
 	public void remove(int index) {//delete
 		
 	}
