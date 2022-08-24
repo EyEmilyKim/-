@@ -4,7 +4,6 @@ import y22.m08.linkedlist.MySingleLinkedList;
 import y22.m08.linkedlist.Node;
 
 public class Polynomial {
-
 	public char name;
 	public MySingleLinkedList<Term> terms; 
 	
@@ -50,8 +49,35 @@ public class Polynomial {
 		}
 	}
 	
-	public static void main(String[] args) {
-
+	//정수 x를 매개변수로 받아서 이 다항식의 결과값을 계산해주는 메서드
+	//즉 다항식 모든 항의 값(각 밑수,계수,차수 조합)을 계산해서 더해주기
+	public int calc(int x) {
+		int result = 0;
+		Node<Term> p = terms.head;
+		while(p != null) {
+			result += p.data.calc(x);
+			p = p.next;
+		}
+		return result;
 	}
-
+	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(name+"(x)=");
+		Node<Term> p = terms.head;
+		while(p != null) {
+			sb.append("+"+p.data.toString());
+			p = p.next;
+		}
+		return sb.toString();
+//		--하위호환 코딩--
+//		String result = "";
+//		Node<Term> p = terms.head;
+//		while(p != null) {
+//			result += ("+"+p.data.toString());
+//			p = p.next;
+//		}
+//		return result
+//		--------------
+	}
 }
