@@ -1,0 +1,18 @@
+package y22.m09.abstractExmpl;
+
+abstract class Animal {	abstract void cry(); }
+class Cat extends Animal { void cry() {System.out.println("냐옹");} }
+class Dog extends Animal { void cry() {System.out.println("멍멍");} }
+
+public class AbstractDemo {
+	public static void main(String[] args) {
+//		Animal a = new Animal();// 추상클래스는 인스턴스를 생성할 수 없음
+		Cat c = new Cat();
+		Dog d = new Dog();
+		
+		c.cry();
+		d.cry();
+
+	}
+
+}
