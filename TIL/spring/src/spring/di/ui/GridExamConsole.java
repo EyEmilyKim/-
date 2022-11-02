@@ -2,15 +2,15 @@ package spring.di.ui;
 
 import spring.di.entity.Exam;
 
-public class gridExamConsole implements ExamConsole {
+public class GridExamConsole implements ExamConsole {
 	
 	private Exam exam;
 	
-	public gridExamConsole() {
+	public GridExamConsole() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public gridExamConsole(Exam exam) {
+	public GridExamConsole(Exam exam) {
 		this.exam = exam;
 	}
 	
