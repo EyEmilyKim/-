@@ -5,12 +5,16 @@
 	
 	<!-- Exam exam = new NewlecExam(); -->
 	<bean id="exam" class="spring.di.entity.NewlecExam">
-		<property name="kor" value="10"/>
+		<constructor-arg name="kor" value="10" />
+		<constructor-arg name="eng" value="20" />
+		<constructor-arg name="com" value="30" />
+		<constructor-arg name="math" value="40" />
+	<!-- <property name="kor" value="10"/>
 		<property name="eng" value="10"/>
 		<property name="math" value="10"/>
 		<property name="com">
 			<value>10</value>
-		</property> 
+		</property>  -->
 	</bean>
 	<!-- ExamConsole console = new GridExamConsole(); -->
 <!-- 	<bean id="console" class="spring.di.ui.GridExamConsole"> -->
