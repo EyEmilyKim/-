@@ -11,11 +11,13 @@
 <!-- 	<bean id="exam" class="spring.aop.entity.NewlecExam" p:kor="1" p:eng="1" p:math="1" p:com="1"/> -->
 	<bean id="target" class="spring.aop.entity.NewlecExam" p:kor="1" p:eng="1" p:math="1" p:com="1"/>
 	<bean id="logAroundAdvice" class="spring.aop.advice.LogAroundAdvice" />
+	<bean id="logBeforeAdvice" class="spring.aop.advice.LogBeforeAdvice" />
 	<bean id="exam" class="org.springframework.aop.framework.ProxyFactoryBean">
 		<property name="target" ref="target" />
 		<property name="interceptorNames">
 			<list>
 				<value>logAroundAdvice</value>
+				<value>logBeforeAdvice</value>
 			</list>
 		</property>
 	</bean>
