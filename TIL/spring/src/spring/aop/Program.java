@@ -19,7 +19,7 @@ public class Program {
 //				new AnnotationConfigApplicationContext(NewlecDIConfig.class);
 		
 		Exam exam = (Exam) context.getBean("exam"); 
-				
+		
 		System.out.printf("total is %d\n", exam.total());
 		System.out.printf("avg is %f\n", exam.avg());
 		
