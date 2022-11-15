@@ -29,12 +29,21 @@
 		<property name="pointcut" ref="classicPointCut" />
 	</bean> -->
 	
-	<bean id="classicBeforeAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+	<!-- <bean id="classicBeforeAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
 		<property name="advice" ref="logBeforeAdvice" />
 		<property name="mappedNames" >
 			<list>
 				<value>total</value>
 				<value>avg</value>
+			</list>
+		</property>
+	</bean> -->
+	
+	<bean id="classicBeforeAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<property name="advice" ref="logBeforeAdvice" />
+		<property name="patterns" >
+			<list>
+				<value>.*to.*</value>
 			</list>
 		</property>
 	</bean>
