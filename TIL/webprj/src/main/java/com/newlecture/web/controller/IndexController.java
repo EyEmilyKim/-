@@ -12,7 +12,7 @@ public class IndexController implements Controller {
 		System.out.println("IndexController called");
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("data", "Hello Sping MVC~");
-		mav.setViewName("index.jsp");
+		mav.setViewName("/WEB-INF/view/index.jsp");
 		return mav;
 	}
 }
