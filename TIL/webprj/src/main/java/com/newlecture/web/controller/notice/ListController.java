@@ -1,4 +1,4 @@
-package com.newlecture.web.controller;
+package com.newlecture.web.controller.notice;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -6,13 +6,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
-public class IndexController implements Controller {
+public class ListController implements Controller {
 
+	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("IndexController called");
-		ModelAndView mav = new ModelAndView("index");
-		mav.addObject("data", "Hello Sping MVC~");
-//		mav.setViewName("/WEB-INF/view/index.jsp");
+		// TODO Auto-generated method stub
+		ModelAndView mav = new ModelAndView("notice/list");
+//		mav.setViewName("/WEB-INF/view/notice/list.jsp");
 		return mav;
 	}
+
 }
