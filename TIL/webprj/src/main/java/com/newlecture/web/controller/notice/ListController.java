@@ -11,7 +11,7 @@ public class ListController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		ModelAndView mav = new ModelAndView("notice/list");
+		ModelAndView mav = new ModelAndView("notice.list");
 //		mav.setViewName("/WEB-INF/view/notice/list.jsp");
 		return mav;
 	}
