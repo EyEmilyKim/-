@@ -23,7 +23,7 @@ public class NoticeService {
 		int start = 1 + (page-1)*10;     // 1, 11, 21, 31, ..
 		int end = 10*page; // 10, 20, 30, 40...
 		
-		String sql = "SELECT * FROM NOTICE_VIEW WHERE "+field+" LIKE ? AND NUM BETWEEN ? AND ?";	
+		String sql = "SELECT * FROM NEWLEC_NOTICE WHERE "+field+" LIKE ? AND ID BETWEEN ? AND ?";	
 		
 		Class.forName(driver);
 		Connection con = DriverManager.getConnection(url,uid, pwd);
