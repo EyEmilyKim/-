@@ -4,11 +4,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class IndexController {
+public class HomeController {
 
 	@RequestMapping("/index")
-	public void aaaa() {
-		System.out.println("aaaa() called");
+	public String index() {
+		System.out.println("index() called");
+		return "root.index";
+	}
+	
+	@RequestMapping("/help")
+	public void help() {
+		System.out.println("help() called");
 	}
 	
 //	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
