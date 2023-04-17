@@ -7,6 +7,7 @@
         http://www.springframework.org/schema/mvc
         https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+<!-- 	service-context.xml 내용 -->
     <bean name="/index" class="com.newlecture.web.controller.IndexController" />  
     <bean name="/notice/list" class="com.newlecture.web.controller.notice.ListController" >
     	<property name="noticeService" ref="noticeService" />
@@ -33,6 +34,7 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
+<!-- 	service-context.xml 내용 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521/xe" />
