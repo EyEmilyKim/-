@@ -19,7 +19,7 @@ public class NoticeController {
 	
 	@RequestMapping("list")
 	public String list() throws ClassNotFoundException, SQLException {
-		
+		System.out.println("NoticeController > list() called");
 		List<Notice> list = noticeService.getList(1, "title", "");
 		
 		return "notice.list";
@@ -27,6 +27,7 @@ public class NoticeController {
 	
 	@RequestMapping("detail")
 	public String detail() {
+		System.out.println("NoticeController > detail() called");
 		return "notice.detail";
 	}
 	
