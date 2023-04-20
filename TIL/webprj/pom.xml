@@ -25,7 +25,12 @@
 	    <version>5.2.12.RELEASE</version>
 	</dependency>
 
-
+	<!-- 뉴렉처 스프링3-33강. JSON 자동 변환 위한 library -->
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-databind</artifactId>
+		<version>2.11.2</version>
+	</dependency>
 	
 
 	<dependency>
