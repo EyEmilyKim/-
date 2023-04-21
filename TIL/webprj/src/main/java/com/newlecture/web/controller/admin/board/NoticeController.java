@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/admin/board/notice/")
 public class NoticeController {
 
-	@RequestMapping("list")
+//	@RequestMapping("list")
 	public String list() {
 		
 		return "";
@@ -16,9 +16,9 @@ public class NoticeController {
 	
 	@RequestMapping("reg")
 	@ResponseBody
-	public String reg() {
+	public String reg(String title, String content) {
 		
-		return "reg";
+		return String.format("title : %s<br>content : %s<br>", title, content);
 	}
 	
 	@RequestMapping("edit")
