@@ -16,8 +16,10 @@ public class NoticeController {
 	
 	@RequestMapping("reg")
 	@ResponseBody
-	public String reg(String title, String content, String category) {
-		
+	public String reg(String title, String content, String category, String[] foods, String food) {
+		for(String f : foods)
+			System.out.println(f);
+		System.out.println("food : "+food);
 		return String.format("title : %s<br>content : %s<br>category : %s<br>", title, content, category);
 	}
 	
