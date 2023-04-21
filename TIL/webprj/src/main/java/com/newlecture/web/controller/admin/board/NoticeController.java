@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller("adminNoticeController")
@@ -24,8 +25,14 @@ public class NoticeController {
 		
 		return "admin.board.notice.list";
 	}
-	
-	@RequestMapping("reg")
+
+	@GetMapping("reg")
+	public String reg(){
+		
+		return "admin.board.notice.reg";
+	}
+
+	@PostMapping("reg")
 	public String reg(String title, String content, MultipartFile[] files, String category, String[] foods, String food, HttpServletRequest request) throws IllegalStateException, IOException {
 		
 		for(MultipartFile file : files) {
