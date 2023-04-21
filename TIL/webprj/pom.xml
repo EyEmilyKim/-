@@ -32,6 +32,13 @@
 		<version>2.11.2</version>
 	</dependency>
 	
+	<!-- 뉴렉처 스프링3-43강. 파일 업로드 위한 library -->
+	<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+	<dependency>
+	    <groupId>commons-fileupload</groupId>
+	    <artifactId>commons-fileupload</artifactId>
+	    <version>1.4</version>
+	</dependency>
 
 	<dependency>
 		<groupId>org.apache.tiles</groupId>
