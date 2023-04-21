@@ -19,14 +19,13 @@ public class NoticeController {
 	@Autowired
 	private ServletContext ctx;
 	
-//	@RequestMapping("list")
+	@RequestMapping("list")
 	public String list() {
 		
-		return "";
+		return "admin.board.notice.list";
 	}
 	
 	@RequestMapping("reg")
-	@ResponseBody
 	public String reg(String title, String content, MultipartFile[] files, String category, String[] foods, String food, HttpServletRequest request) throws IllegalStateException, IOException {
 		
 		for(MultipartFile file : files) {
@@ -52,19 +51,20 @@ public class NoticeController {
 		for(String f : foods)
 			System.out.println(f);
 		System.out.println("food : "+food);
-		return String.format("title : %s<br>content : %s<br>category : %s<br>", title, content, category);
+		return "admin.board.notice.reg";
+		//return String.format("title : %s<br>content : %s<br>category : %s<br>", title, content, category);
 	}
 	
 	@RequestMapping("edit")
 	public String edit() {
 		
-		return "";
+		return "admin.board.notice.edit";
 	}
 	
 	@RequestMapping("del")
 	public String del() {
 		
-		return "";
+		return "admin.board.notice.del";
 	}
 	
 }
