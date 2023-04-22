@@ -4,7 +4,9 @@
   <artifactId>webprj</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+  
   <dependencies>
+  
 	<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-api -->
 	<dependency>
 	    <groupId>org.apache.tomcat</groupId>
@@ -12,12 +14,12 @@
 	    <version>9.0.69</version>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
-	<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-webmvc</artifactId>
 	    <version>5.2.9.RELEASE</version>
 	</dependency>
+	<!-- 뉴렉처 스프링3-23강. DataSource 객체 사용 위한 library -->
 	<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
@@ -56,9 +58,21 @@
 		<version>1.2</version>
 	</dependency>
   </dependencies>
-  <properties>
   
+  <!-- JRE 버젼 맞추기 위한 약식 플러그인 -->
+  <properties>
   	<maven.compiler.source>1.8</maven.compiler.source>
   	<maven.compiler.target>1.8</maven.compiler.target>
   </properties>
+  
+  <!-- pom.xml 첫줄 에러(>) 위한 플러그인 : Cannot access defaults field of Properties --> 
+  <build>
+  	<plugins>
+  		<plugin>
+		  <groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-war-plugin</artifactId>
+		  <version>3.3.2</version>
+		</plugin>
+  	</plugins>
+  </build>
 </project>
