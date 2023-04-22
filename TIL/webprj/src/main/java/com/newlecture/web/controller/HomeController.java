@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomeController {
 
 	@RequestMapping("index")
-	@ResponseBody
+//	@ResponseBody
 	public String index() {
 		System.out.println("index() called");
-		return "Hello Index !";
+//		return "Hello Index !";
+		return "root.index";
 	}
 	
 //	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {

@@ -5,13 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.newlecture.web.entity.Notice;
@@ -32,46 +32,14 @@ public class JDBCNoticeService implements NoticeService {
 		int start = 1 + (page-1)*10;     // 1, 11, 21, 31, ..
 		int end = 10*page; // 10, 20, 30, 40...
 		
-		String sql = "SELECT * FROM NEWLEC_NOTICE WHERE "+field+" LIKE ? AND ID BETWEEN ? AND ?";	
+		String sql = "SELECT * FROM NEWLEC_NOTICE"
+//				+ " WHERE "+field+" LIKE ?"
+//				+ " AND ID BETWEEN ? AND ?"
+				;	
 		
-//		Class.forName(driver);
-//		Connection con = DriverManager.getConnection(url,uid, pwd);
-		Connection con = dataSource.getConnection();
-		PreparedStatement st = con.prepareStatement(sql);
-		st.setString(1, "%"+query+"%");
-		st.setInt(2, start);
-		st.setInt(3, end);
-		ResultSet rs = st.executeQuery();
-		
-		List<Notice> list = new ArrayList<Notice>();
-		
-		while(rs.next()){
-		    int id = rs.getInt("ID");
-		    String title = rs.getString("TITLE");
-		    String writerId = rs.getString("WRITER_ID");
-		    Date regDate = rs.getDate("REGDATE");
-		    String content = rs.getString("CONTENT");
-		    int hit = rs.getInt("hit");
-		    String files = rs.getString("FILES");
-		    
-		    Notice notice = new Notice(
-		    					id,
-		    					title,
-		    					writerId,
-		    					regDate,
-		    					content,
-		    					hit,
-		    					files
-		    				);
-
-		    list.add(notice);
-		    
-		}
-
-		
-		rs.close();
-		st.close();
-		con.close();
+		JdbcTemplate template = new JdbcTemplate();
+		template.setDataSource(dataSource);
+		List<Notice> list = template.query(sql, new BeanPropertyRowMapper(Notice.class));
 		
 		return list;
 	}
