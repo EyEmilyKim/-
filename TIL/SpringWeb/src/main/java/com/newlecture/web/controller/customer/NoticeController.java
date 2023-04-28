@@ -17,6 +17,6 @@ public class NoticeController {
 		
 		@RequestMapping("detail")
 		public String detail() {
-			return "customer/notice/detail";
+			return "customer.notice.detail";
 		}
 }
