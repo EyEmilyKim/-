@@ -10,7 +10,7 @@ public class NoticeController {
 
 		@RequestMapping("list")
 		public String list(Model model) {
-			model.addAttribute("test", "Hello~");
+			model.addAttribute("test", "Hello DevTools~");
 			return "customer/notice/list";
 		}
 		
