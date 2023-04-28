@@ -11,7 +11,8 @@ public class NoticeController {
 		@RequestMapping("list")
 		public String list(Model model) {
 			model.addAttribute("test", "Hello DevTools~");
-			return "customer/notice/list";
+			return "customer.notice.list"; // for TilesViewResolver
+//			return "customer/notice/list"; // for ResourceViewResolver
 		}
 		
 		@RequestMapping("detail")
