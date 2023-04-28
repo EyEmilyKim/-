@@ -5,16 +5,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/customer/notice/")
 public class NoticeController {
 
-		@RequestMapping("/customer/notice/list")
+		@RequestMapping("list")
 		public String list(Model model) {
 			model.addAttribute("test", "Hello~");
-			return "/customer/notice/list.jsp";
+			return "/WEB-INF/view/customer/notice/list.jsp";
 		}
 		
-		@RequestMapping("/customer/notice/detail")
+		@RequestMapping("detail")
 		public String detail() {
-			return "/customer/notice/detail.jsp";
+			return "/WEB-INF/view/customer/notice/detail.jsp";
 		}
 }
