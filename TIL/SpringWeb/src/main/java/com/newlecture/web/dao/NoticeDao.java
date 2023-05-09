@@ -17,8 +17,11 @@ public interface NoticeDao {
 //		@Result(property = "regdate", column = "reg_date"),
 //		@Result(property = "memberName", column = "member_name")
 //	})
-	@Select("Select * from noticeview")
-	List<NoticeView> getList();
+	@Select("select * from noticeview "
+			+ "where ${field} like '%${query}%' "
+			+ "order by id desc "
+			+ "limit #{offset}, #{size};")
+	List<NoticeView> getList(int offset, int size, String field, String query);
 
 	Notice get(int id);
 	

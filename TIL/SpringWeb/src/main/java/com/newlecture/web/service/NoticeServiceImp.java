@@ -16,9 +16,11 @@ public class NoticeServiceImp implements NoticeService {
 	private NoticeDao noticeDao;
 	
 	@Override
-	public List<NoticeView> getList() {
-
-		List<NoticeView> list = noticeDao.getList();
+	public List<NoticeView> getList(int page, String field, String query) {
+		
+		int size = 10;
+		int offset = 0+(page-1)*size; // page 1->0, 2->10, 3->20... an=a1(n-1)d -> 0+(page-1)*10
+		List<NoticeView> list = noticeDao.getList(offset, size, field, query);
 		
 		return list;
 	}
