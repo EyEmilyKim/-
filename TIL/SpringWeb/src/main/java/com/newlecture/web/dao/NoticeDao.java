@@ -13,17 +13,11 @@ import com.newlecture.web.entity.NoticeView;
 @Mapper
 public interface NoticeDao {
 	
-//	@Results({
-//		@Result(property = "regdate", column = "reg_date"),
-//		@Result(property = "memberName", column = "member_name")
-//	})
-	@Select("select * from noticeview "
-			+ "where ${field} like '%${query}%' "
-			+ "order by id desc "
-			+ "limit #{offset}, #{size};")
 	List<NoticeView> getList(int offset, int size, String field, String query);
 
 	Notice get(int id);
 	
-
+	int update(Notice notice);
+	int insert(Notice notice);
+	int delete(int id);
 }
