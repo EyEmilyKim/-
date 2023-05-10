@@ -57,4 +57,34 @@
           #{id}
     </foreach>
   </delete>
+  <update id="updatePubAll">
+  	update Notice 
+  	set 
+  		pub = case id 
+  				<foreach item="id" collection="pubIds">
+  					when #{id} then 1 
+  				</foreach>
+  				<foreach item="id" collection="closeIds">
+  					when #{id} then 0  
+  				</foreach>
+  			  end 
+  	where id in (
+		<foreach item="id" collection="pubIds" separator=",">
+			#{id} 
+		</foreach>
+	  	,
+		<foreach item="id" collection="closeIds" separator=",">
+			#{id}   
+		</foreach>
+  	)
+  	<!-- update Notice 
+  	set 
+  		pub = case id 
+  				when 14 then 0 
+  				when 15 then 0 
+  				when 21 then 1 
+  				when 22 then 1 
+  			  end 
+  	where id in (14,15,21,22)  -->
+  </update>
 </mapper>
