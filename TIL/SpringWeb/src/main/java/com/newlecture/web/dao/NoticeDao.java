@@ -13,7 +13,7 @@ import com.newlecture.web.entity.NoticeView;
 @Mapper
 public interface NoticeDao {
 
-	List<NoticeView> getViewList(int offset, int size, String field, String query);
+	List<NoticeView> getViewList(int offset, int size, String field, String query, boolean pub);
 	int getCount(String field, String query);
 	NoticeView getView(int id);
 
