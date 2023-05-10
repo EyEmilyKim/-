@@ -10,18 +10,18 @@ public interface NoticeService {
 	// - 목록 페이지를 요청할 때
 	List<NoticeView> getViewList();
 
-	int getCount();
-
 	// - 검색을 요청할 때
 	List<NoticeView> getViewList(String field, String query);
 
 	// - 페이지 버튼 눌러 요청할 때
 	List<NoticeView> getViewList(int page, String field, String query);
+	
+	int getCount();
 
 	int getCount(String field, String query);
 
 	// - 자세한 페이지 요청할 때
-	NoticeView get(int id);
+	NoticeView getView(int id);
 
 	Notice getNext(int id);
 
