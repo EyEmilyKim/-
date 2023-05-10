@@ -18,4 +18,16 @@
 	select * from noticeview 
 	where id = #{id} 
   </select>
+  
+  <select id="getNext" resultType="com.newlecture.web.entity.Notice">
+	select * from notice  
+	where regdate &gt; (select regdate from notice where id = #{id})  
+	limit 1
+  </select>
+  <select id="getPrev" resultType="com.newlecture.web.entity.Notice">
+	select * from notice  
+	where regdate &lt; (select regdate from notice where id = #{id})  
+	order by regdate desc 
+	limit 1
+  </select>
 </mapper>
