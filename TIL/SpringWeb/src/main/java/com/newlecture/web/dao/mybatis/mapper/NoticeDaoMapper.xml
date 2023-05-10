@@ -60,6 +60,15 @@
   <update id="updatePubAll">
   	update Notice 
   	set 
+  		pub = #{pub} 
+	where id in 
+	<foreach item="id" index="index" collection="ids"
+        open="(" separator="," close=")" >
+          #{id}
+    </foreach>
+  		
+  	<!-- update Notice 
+  	set 
   		pub = case id 
   				<foreach item="id" collection="pubIds">
   					when #{id} then 1 
@@ -76,7 +85,7 @@
 		<foreach item="id" collection="closeIds" separator=",">
 			#{id}   
 		</foreach>
-  	)
+  	) -->
   	<!-- update Notice 
   	set 
   		pub = case id 
