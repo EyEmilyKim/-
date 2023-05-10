@@ -30,4 +30,22 @@
 	order by regdate desc 
 	limit 1
   </select>
+  
+  <update id="update" parameterType="com.newlecture.web.entity.Notice">
+	update 
+	set 
+		title = #{title}, 
+		content = #{content}, 
+		hit = #{hit}, 
+		pub = #{pub}, 
+	where id = #{id}
+  </update>
+  <insert id="insert" parameterType="com.newlecture.web.entity.Notice">
+  	inset into Notice(title, content, memberId) 
+  	values(#{title}, #{content}, #{memberId})
+  </insert>
+  <delete id="delete">
+	delete from Notice 
+	where id = #{id}
+  </delete>
 </mapper>
