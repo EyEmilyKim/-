@@ -3,10 +3,14 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newlecture.web.dao.NoticeDao">
-  <select id="getViewList" resultType="com.newlecture.web.entity.NoticeView">
+  <resultMap type="com.newlecture.web.entity.NoticeView" id="noticeViewMap">
+  	<result property="memberName" column="member_name" />
+  </resultMap>
+
+  <select id="getViewList" resultMap="noticeViewMap">
 	select * from noticeview 
 	<trim prefix="WHERE" prefixOverrides="AND | OR ">
-	<if test="query != null or query != ''">
+	<if test="query != null and query != ''">
 		${field} like '%${query}%' 
 	</if>	
 		and pub = #{pub} 
