@@ -14,7 +14,7 @@ import com.newlecture.web.entity.NoticeView;
 public interface NoticeDao {
 
 	List<NoticeView> getViewList(int offset, int size, String field, String query, boolean pub);
-	int getCount(String field, String query);
+	int getCount(String field, String query, boolean pub);
 	NoticeView getView(int id);
 
 	Notice getNext(int id);
