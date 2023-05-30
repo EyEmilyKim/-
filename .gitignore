@@ -5,3 +5,6 @@ target/
 
 # STS (Spring Tool Suite)
 *.springBeans
+
+#2023.05.30화 생활코딩 - 리액트 2강 / prj 생성만 해봄
+TIL/react_lifecoding/
