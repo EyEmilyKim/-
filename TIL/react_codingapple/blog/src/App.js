@@ -18,7 +18,12 @@ function App() {
         <h4>블로그 - 코딩애플과 함께 하는 React 연습</h4>
       </div>
       <div className="list">
-        <h4>{ post[0] } <span onClick={()=>{ post변경(post[+1]) }}>✨</span></h4>
+        <h4>{ post[0] } <button onClick={()=>{ 
+          // let copy = {post};
+          let copy = [...post];
+          copy[0] = '빵 닮은 구름';
+          post변경(copy);
+         }}>✨글수정✨</button></h4>
         <p>2월 17일 발행</p>
       </div>
       <div className="list">
