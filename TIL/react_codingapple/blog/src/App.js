@@ -13,9 +13,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="black-nav">
-        <h4>블로그 - 코딩애플과 함께 하는 React 연습</h4>
-      </div>
+      <Header/>
       <button onClick={()=>{
           let sort = [...post.sort()];
           post변경(sort);
@@ -37,8 +35,31 @@ function App() {
         <h4>{ post[2] } </h4>
         <p>{ 발행일[1] } 발행</p>
       </div>
+ 
+      <Modal></Modal>
+
     </div>
   );
+}
+
+function Header(){
+  return(
+    <div className="black-nav">
+      <h4>블로그 - 코딩애플과 함께 하는 React 연습</h4>
+    </div>
+  )
+}
+function Modal(){
+  return(
+    <>
+    <div className='modal'>
+      <h4>제목</h4>
+      <p>날짜</p>
+      <p>상세내용</p>
+    </div>
+    <div></div>
+    </>
+  )
 }
 
 export default App;
