@@ -4,49 +4,10 @@ import { useState } from 'react';
 // import Header from './components/Header';
 import Nav from './components/Nav';
 import Article from './components/Article';
-// import Create from './components/Create';
-// import Update from './components/Update';
+import Create from './components/Create';
+import Update from './components/Update';
 import * as Components from './components';
 
-
-function Create(props){
-  return <article>
-    <h2>Create</h2>
-    <form onSubmit={event=>{
-      event.preventDefault();
-      const title = event.target.title.value;
-      const body = event.target.body.value;
-      props.onCreate(title, body);
-    }}>
-      <p><input type='text' name='title' placeholder='제목을 입력하세요' /></p>
-      <p><textarea name='body' placeholder='내용을 입력하세요' /></p>
-      <p><input type="submit" value="Create" /></p>
-    </form>
-  </article>
-}
-
-function Update(props){
-  const [title, setTitle] = useState(props.title);
-  const [body, setBody] = useState(props.body);
-  return <article>
-  <h2>Update</h2>
-  <form onSubmit={event=>{
-    event.preventDefault();
-    const title = event.target.title.value;
-    const body = event.target.body.value;
-    props.onUpdate(title, body);
-  }}>
-    <p><input type='text' name='title' placeholder='제목을 입력하세요' 
-          value={title} onChange={event=>{
-            console.log(event.target.value); 
-            setTitle(event.target.value);}
-          } /></p>
-    <p><textarea name='body' placeholder='내용을 입력하세요' 
-          value={body} onChange={event=>{setBody(event.target.value);}} /></p>
-    <p><input type="submit" value="Update" /></p>
-  </form>
-</article>
-}
 
 function App() {
   const [mode, setMode] = useState('WELCOME');
@@ -73,11 +34,24 @@ function App() {
       } 
     }
     content = <Article title={title} body={body}></Article>
-    contextControl = <li><a href={'/update/'+id} onClick={event=>{
-      event.preventDefault();
-      setMode('UPDATE');
-      setId(id);
-    }}>Update</a></li>;
+    contextControl = <>
+      <li><a href={'/update/'+id} onClick={event=>{
+        event.preventDefault();
+        setMode('UPDATE');
+        setId(id);
+      }}>Update</a></li>
+      <li><input type="button" value="Delete" onClick={()=>{
+        if(!window.confirm('정말 삭제하시겠습니까?')) return false;
+        const newTopics = [];
+        for(let i=0; i<topics.length; i++){
+          if(topics[i].id !== id){
+            newTopics.push(topics[i]);
+          }
+        }
+        setTopics(newTopics);
+        setMode('WELCOME');
+      }} /></li>
+    </>;
   } else if(mode === 'CREATE'){
     content = <Create onCreate={(_title, _body)=>{
       const newTopic = { id: nextId, title: _title, body: _body };
