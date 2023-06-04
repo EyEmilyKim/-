@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { HashRouter as Router, Routes, Route, Link, NavLink } from "react-router-dom"; 
+import { BrowserRouter as Router, Routes, Route, Link, NavLink } from "react-router-dom"; 
 
 function Home() {
   return (
@@ -17,7 +17,16 @@ function Topics() {
   return (
     <div>
       <h2>Topics</h2>
-      Topics...
+      <ul>
+        <li><NavLink to="/topics/1">HTML</NavLink></li>
+        <li><NavLink to="/topics/2">JS</NavLink></li>
+        <li><NavLink to="/topics/3">REACT</NavLink></li>
+      </ul>
+      <Routes>
+        <Route path="/topics/1" element={<h3>HTML is....</h3>}></Route>
+        <Route path="/topics/2" element={<h3>JS is....</h3>}></Route>
+        <Route path="/topics/3" element={<h3>REACT is....</h3>}></Route>
+      </Routes>
     </div>
   )
 }
@@ -44,7 +53,7 @@ function App(){
       </ul>
       <Routes>
         <Route path="/" element={<Home/>}></Route>
-        <Route path="/topics" element={<Topics/>}></Route>
+        <Route path="/topics/*" element={<Topics/>}></Route>
         <Route path="/contact" element={<Contact/>}></Route>
       </Routes>
     </div>
