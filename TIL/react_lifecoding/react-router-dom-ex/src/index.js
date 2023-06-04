@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"; 
 
 function Home() {
   return (
@@ -32,12 +33,23 @@ function Contact() {
 
 function App(){
   return (
+    <Router>
+      
     <div>
       <h1>React Router DOM example</h1>
-      <Home></Home>
-      <Topics></Topics>
-      <Contact></Contact>
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/topics">Topics</Link></li>
+        <li><Link to="/contact">Contact</Link></li>
+      </ul>
+      <Routes>
+        <Route path="/" element={<Home/>}></Route>
+        <Route path="/topics" element={<Topics/>}></Route>
+        <Route path="/contact" element={<Contact/>}></Route>
+      </Routes>
     </div>
+
+    </Router>
   )
 }
 
