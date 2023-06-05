@@ -23,9 +23,13 @@ function Topics() {
         <li><NavLink to="/topics/3">REACT</NavLink></li>
       </ul>
       <Routes>
-        <Route path="/topics/1" element={<h3>HTML is....</h3>}></Route>
-        <Route path="/topics/2" element={<h3>JS is....</h3>}></Route>
-        <Route path="/topics/3" element={<h3>REACT is....</h3>}></Route>
+        <Route path="1" element={"HTML is...."}></Route>
+        <Route path="2" element={"JS is...."}></Route>
+        <Route path="3" element={"REACT is...."}></Route>
+{/*         //출력Test
+        <Route path="1" element={<h3>HTML is....</h3>}></Route> //h3으로 출력됨.
+        <Route path="2" element={"JS is...."}></Route> //text로 출력됨. //↑←""또는 h3태그 빼면 에러남.
+        <Route path="3" >REACT is....</Route> //""있어도 없어도 출력안됨. h3 태그 넣으면 에러남. */}
       </Routes>
     </div>
   )
