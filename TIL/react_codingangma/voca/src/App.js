@@ -1,7 +1,13 @@
+import Day from "./components/Day";
+import DayList from "./components/DayList";
+import Header from "./components/Header";
+
 function App() {
   return (
-    <div>
-      <h2>Hello, 코딩앙마 React !</h2>
+    <div className="App">
+      <Header />
+      <DayList />
+      <Day />
     </div>
   );
 }
