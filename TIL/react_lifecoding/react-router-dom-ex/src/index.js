@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router, Routes, Route, Link, NavLink } from "react-router-dom"; 
+import { BrowserRouter as Router, Routes, Route, Link, NavLink, useParams } from "react-router-dom"; 
 
 function Home() {
   return (
@@ -13,23 +13,47 @@ function Home() {
   )
 }
 
+let contents = [
+  {id:1, title:'HTML', description:'HTML is...'},
+  {id:2, title:'JS', description:'JS is...'},
+  {id:3, title:'REACT', description:'REACT is...'}
+]
+
+function Topic(){
+  let params = useParams();
+  let topic_id = params.topic_id;
+  let selected_topic = {
+    title:'Sorry', 
+    description: 'Not Found'
+  }
+  for(let i=0; i<contents.length; i++){
+    if(contents[i].id === Number(topic_id)){
+      selected_topic = contents[i];
+      break;
+    }
+  }
+  console.log('params', params, params.topic_id);
+  return (
+    <div>
+      <h3>{selected_topic.title}</h3>
+      {selected_topic.description}
+    </div>
+  )  
+}
+
 function Topics() {
+  let lis = [];
+  for(let i=0; i<contents.length; i++){
+    lis.push(<li key={contents[i].id}><NavLink to={'/topics/'+contents[i].id}>{contents[i].title}</NavLink></li>)
+  }
   return (
     <div>
       <h2>Topics</h2>
       <ul>
-        <li><NavLink to="/topics/1">HTML</NavLink></li>
-        <li><NavLink to="/topics/2">JS</NavLink></li>
-        <li><NavLink to="/topics/3">REACT</NavLink></li>
+        {lis}
       </ul>
       <Routes>
-        <Route path="1" element={"HTML is...."}></Route>
-        <Route path="2" element={"JS is...."}></Route>
-        <Route path="3" element={"REACT is...."}></Route>
-{/*         //출력Test
-        <Route path="1" element={<h3>HTML is....</h3>}></Route> //h3으로 출력됨.
-        <Route path="2" element={"JS is...."}></Route> //text로 출력됨. //↑←""또는 h3태그 빼면 에러남.
-        <Route path="3" >REACT is....</Route> //""있어도 없어도 출력안됨. h3 태그 넣으면 에러남. */}
+        <Route path=":topic_id" element={<Topic/>}></Route>
       </Routes>
     </div>
   )
