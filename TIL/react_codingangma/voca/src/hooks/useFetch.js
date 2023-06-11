@@ -11,6 +11,11 @@ export default function useFetch(url){
         .then(data=>{
           setData(data);
         })
+        .catch(error=>{
+          console.log(`useFetch() 에러 발생 : ${error}`);
+          console.error(error);
+          
+        })
       }, [url]);
 
       return data;

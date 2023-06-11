@@ -6,6 +6,9 @@ import { useState } from "react";
 export default function Day() {
   const {day} = useParams();
   const words = useFetch(`http://localhost:3001/words?day=${day}`);
+  console.log(`Day() day : ${day}`);
+  console.log(`Day() words :`, words);
+  console.log('Day() words.length', words.length);
   const history = useNavigate();
   const maxDay = useFetch(`http://localhost:3001/days`).length;
   const isMax = day == maxDay ? true : false;
@@ -28,27 +31,49 @@ export default function Day() {
     if (
       window.confirm("해당 일자의 단어가 모두 삭제됩니다.\n정말 삭제하시겠습니까?")
     ) {
-      //words 에서 day:4 인 각 word에 대해 delete 요청 -> 각각의 결과 배열로 받기
-      const wordsDeletePromises = words.map(word => {
-        return fetch(`http://localhost:3001/words/${word.id}`, {
-          method: "DELETE",
-        });
-      });
-      //words 삭제 모두 완료되면 alert 후 day 삭제
+      if(words.length !== 0){
+        console.log(`deleteDay() day : ${day} -> words !== 0`);
+        //words 에서 day:4 인 각 word에 대해 delete 요청 -> 각각의 결과 배열로 받기
+        const wordsDeletePromises = words.map(word => {
+          return fetch(`http://localhost:3001/words/${word.id}`, {
+              method: "DELETE",
+          });
+        })
+      //words 삭제 모두 완료되면 log 후 day 삭제
       Promise.all(wordsDeletePromises)
       .then(() => {
-        // alert("해당 날짜의 단어가 모두 삭제되었습니다.");
-
+        console.log("해당 날짜의 단어가 모두 삭제되었습니다.");
+        
         fetch(`http://localhost:3001/days/${day}`, {
           method: "DELETE",
         })
         .then((res) => {
           if (res.ok) {
             alert("해당 날짜 삭제가 완료되었습니다.");
+            console.log("해당 날짜 삭제가 완료되었습니다.");
             history("/");
           }
-        });
+        })
+        .catch(error=>{
+          console.log("날짜 삭제 중 에러 : ", error);
+        })
       });
+    } else {
+      console.log(`deleteDay() day : ${day} -> words === 0`);
+      fetch(`http://localhost:3001/days/${day}`, {
+        method: "DELETE",
+      })
+      .then((res) => {
+        if (res.ok) {
+          alert("해당 날짜 삭제가 완료되었습니다.");
+          console.log("해당 날짜 삭제가 완료되었습니다.");
+          history("/");
+        }
+      })
+      .catch(error=>{
+        console.log("날짜 삭제 중 에러 : ", error);
+      })
+      }
     }
   }
 

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import './Word.css';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Word({ word: w }) {
+  const {day} = useParams();
   const [word, setWord] = useState(w);
   const [isShow, setIsShow] = useState(false);
   const [isDone, setIsDone] = useState(word.isDone);
@@ -45,6 +46,8 @@ export default function Word({ word: w }) {
         }).then(res => {
           if(res.ok){
             setWord({id:0});
+            console.log(`Word() delete done. -> day : ${day}`);
+            history(`/day/${day}`);
           }
         });
         
