@@ -7,6 +7,22 @@ export default function Day() {
   const {day} = useParams();
   const words = useFetch(`http://localhost:3001/words?day=${day}`);
   const history = useNavigate();
+  const maxDay = useFetch(`http://localhost:3001/days`).length;
+  const isMax = day == maxDay ? true : false;
+  const isMin = day == 1 ? true : false;
+
+  function goPrevDay(){
+    const prevDay = day - 1;
+    if(!isMin){
+      history(`/day/${prevDay}`);
+    }
+  }
+  function goNextDay(){
+    const nextDay = Number(day) + 1;
+    if(!isMax){
+      history(`/day/${nextDay}`);
+    }
+  }
 
   function deleteDay() {
     if (
@@ -41,7 +57,7 @@ export default function Day() {
       <div className="flex">
         <h2>Day {day}</h2>
         <button className="btn_del" onClick={deleteDay}>
-          삭제
+          Day삭제
         </button>
       </div>
       {words.length === 0 && <span>Loading...</span>}
@@ -52,6 +68,14 @@ export default function Day() {
           ))}
         </tbody>
       </table>
+      <div className="flex">
+        <button onClick={goPrevDay} style={{
+          opacity : isMin ? 0.3 : 1, 
+        }}>◀</button>
+        <button onClick={goNextDay} style={{
+          opacity : isMax ? 0.3 : 1, 
+        }}>▶</button>
+      </div>
     </>
   );
 }
