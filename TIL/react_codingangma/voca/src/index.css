@@ -92,7 +92,7 @@ table td:first-child {
 }
 
 .btn_del {
-  margin-left: 10px;
+  margin-left: 15px;
   color: #fff;
   background-color: firebrick;
 }
@@ -129,4 +129,9 @@ button {
   width: 400px;
   height: 40px;
   font-size: 20px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
 }
