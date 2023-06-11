@@ -1,11 +1,13 @@
 import { useState } from "react";
 import './Word.css';
+import { useNavigate } from "react-router-dom";
 
 export default function Word({ word: w }) {
   const [word, setWord] = useState(w);
   const [isShow, setIsShow] = useState(false);
   const [isDone, setIsDone] = useState(word.isDone);
   const [isDeleting, setIsDeleting] = useState(false);
+  const history = useNavigate();
 
   function toggleShow() {
     setIsShow(!isShow);
@@ -27,6 +29,10 @@ export default function Word({ word: w }) {
         setIsDone(!isDone);
       }
     });
+  }
+
+  function upd(){
+    history(`/update_word/${word.id}`);
   }
 
   function del(){
@@ -61,6 +67,7 @@ export default function Word({ word: w }) {
       <td>{isShow && word.kor}</td>
       <td>
         <button onClick={toggleShow}>뜻 {isShow ? "숨기기" : "보기"}</button>
+        <button className="btn_upd" onClick={upd}>수정</button>
         <button className="btn_del" onClick={del}>삭제</button>
       </td>
     </tr>

@@ -26,7 +26,7 @@ export default function Day() {
 
   function deleteDay() {
     if (
-      window.confirm("해당 일자의 단어가 모두 삭제됩니다. 정말 삭제하시겠습니까?")
+      window.confirm("해당 일자의 단어가 모두 삭제됩니다.\n정말 삭제하시겠습니까?")
     ) {
       //words 에서 day:4 인 각 word에 대해 delete 요청 -> 각각의 결과 배열로 받기
       const wordsDeletePromises = words.map(word => {

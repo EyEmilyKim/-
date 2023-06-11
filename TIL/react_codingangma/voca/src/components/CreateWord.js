@@ -38,6 +38,8 @@ export default function CreateWord() {
   const dayRef = useRef(null);
 
   return (
+    <>
+    <h2>Create Word...</h2>
     <form onSubmit={onSubmit}>
       <div className="input_area">
         <label>Eng</label>
@@ -63,5 +65,6 @@ export default function CreateWord() {
         { isSaving ? 'Saving...' : '저장' }
       </button>
     </form>
+    </>
   );
 }
