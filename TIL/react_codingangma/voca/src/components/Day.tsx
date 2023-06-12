@@ -1,21 +1,21 @@
 import { useNavigate, useParams } from "react-router-dom";
-import Word from "../components/Word";
+import Word, { IWord } from "./Word";
 import useFetch from "../hooks/useFetch";
 import { useState } from "react";
 
 export default function Day() {
   const {day} = useParams();
-  const words = useFetch(`http://localhost:3001/words?day=${day}`);
+  const words : IWord[] = useFetch(`http://localhost:3001/words?day=${day}`);
   console.log(`Day() day : ${day}`);
   console.log(`Day() words :`, words);
   console.log('Day() words.length', words.length);
   const history = useNavigate();
   const maxDay = useFetch(`http://localhost:3001/days`).length;
-  const isMax = day == maxDay ? true : false;
-  const isMin = day == 1 ? true : false;
+  const isMax = Number(day) == maxDay ? true : false;
+  const isMin = Number(day) == 1 ? true : false;
 
   function goPrevDay(){
-    const prevDay = day - 1;
+    const prevDay = Number(day) - 1;
     if(!isMin){
       history(`/day/${prevDay}`);
     }

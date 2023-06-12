@@ -1,44 +1,50 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import { IDay } from "./DayList";
 
 export default function CreateWord() {
-  const days = useFetch("http://localhost:3001/days");
+  const days: IDay[] = useFetch("http://localhost:3001/days");
   const history = useNavigate();
   const [isSaving, setIsSaving] = useState(false);
 
-  function onSubmit(e) {
+  function onSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    if (!isSaving) {
+    if (!isSaving && dayRef.current && engRef.current && korRef.current ){
       setIsSaving(true);
+
+      const day = dayRef.current.value;
+      const eng = engRef.current.value;
+      const kor = korRef.current.value;
+
       fetch(`http://localhost:3001/words`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          day: dayRef.current.value,
-          eng: engRef.current.value,
-          kor: korRef.current.value,
+          day,
+          eng,
+          kor,
           isDone: false,
         }),
       }).then((res) => {
         if (res.ok) {
           alert("생성이 완료되었습니다.");
-          history(`/day/${dayRef.current.value}`);
+          history(`/day/${day}`);
           setIsSaving(false);
         }
       });
     }
   }
 
-  const engRef = useRef(null);
-  const korRef = useRef(null);
-  const dayRef = useRef(null);
+  const engRef = useRef<HTMLInputElement>(null);
+  const korRef = useRef<HTMLInputElement>(null);
+  const dayRef = useRef<HTMLSelectElement>(null);
 
-  return (
-    <>
+return (
+  <>
     <h2>Create Word...</h2>
     <form onSubmit={onSubmit}>
       <div className="input_area">
@@ -60,11 +66,11 @@ export default function CreateWord() {
         </select>
       </div>
       <button style={{
-        opacity : isSaving ? 0.3 : 1,
+        opacity: isSaving ? 0.3 : 1,
       }}>
-        { isSaving ? 'Saving...' : '저장' }
+        {isSaving ? 'Saving...' : '저장'}
       </button>
     </form>
-    </>
-  );
+  </>
+);
 }
