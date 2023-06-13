@@ -15,10 +15,18 @@
         */
        
        //Asynchronous
-       function callbackMe(){
+    //    function callbackMe(){
+    //         console.log('response end');
+    //    }
+       callbackMe = function(){
             console.log('response end');
        }
-       fetch('html').then(callbackMe);
+       fetch('JavaScript').then(function(res){
+            console.log(res);
+            if(res.status == '404'){
+                alert('파일이 없습니다');
+            }
+       });
        console.log(1);
        console.log(2);
     ">
