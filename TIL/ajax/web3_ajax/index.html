@@ -7,18 +7,23 @@
   <script src="colors.js"></script>
 </head>
 <body>
-  <h1><a href="index.html">WEB</a></h1>
+  <h1><a href="/index.html">WEB</a></h1>
   <input id="night_day" type="button" value="night" onclick="
     nightDayHandler(this);
   ">
   <ol>
-    <li><a onclick="fetchFile('html')">HTML</a></li>
-    <li><a onclick="fetchFile('css')">CSS</a></li>
-    <li><a onclick="fetchFile('javascript')">JavaScript</a></li>
+    <li><a href="#!html" onclick="fetchFile('html')">HTML</a></li>
+    <li><a href="#!css" onclick="fetchFile('css')">CSS</a></li>
+    <li><a href="#!javascript" onclick="fetchFile('javascript')">JavaScript</a></li>
   </ol>
   <article></article>
 
   <script>
+    if(location.hash){
+      fetchFile(location.hash.substr(2));
+    } else {
+      fetchFile('welcome');
+    }
     function fetchFile(name){
       fetch(name).then(function(response){
         response.text().then(function(text){
