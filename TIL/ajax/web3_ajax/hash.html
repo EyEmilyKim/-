@@ -1,0 +1,32 @@
+<html>
+  <body>
+    <a href="#three">three</a>
+    <p>
+      Lorem1 ipsum dolor sit amet consectetur adipisicing elit. Officiis,
+      repellendus repellat voluptatem aut esse soluta necessitatibus nihil
+      expedita nisi mollitia commodi, unde debitis. Laboriosam officiis corrupti
+      voluptate minima ex ipsa.
+    </p>
+    <p>
+      Lorem2 ipsum dolor sit amet consectetur adipisicing elit. Officiis,
+      repellendus repellat voluptatem aut esse soluta necessitatibus nihil
+      expedita nisi mollitia commodi, unde debitis. Laboriosam officiis corrupti
+      voluptate minima ex ipsa.
+    </p>
+    <p id="three">
+      Lorem3 ipsum dolor sit amet consectetur adipisicing elit. Officiis,
+      repellendus repellat voluptatem aut esse soluta necessitatibus nihil
+      expedita nisi mollitia commodi, unde debitis. Laboriosam officiis corrupti
+      voluptate minima ex ipsa.
+    </p>
+    <script>
+      if (window.location.hash) {
+        //Fragment exists
+        console.log(location.hash.substr(1));
+      } else {
+        //Fragment doesn't exist
+        console.log(location.hash.substr(1));
+      }
+    </script>
+  </body>
+</html>
