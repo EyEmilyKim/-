@@ -30,7 +30,21 @@
     
     fetch('list').then(function(response){
       response.text().then(function(text){
-          document.querySelector('#nav').innerHTML = text;
+        console.log(text);
+        var items = text.split(',');
+        console.log(items);
+        //<li><a href="#!html" onclick="fetchFile('html')">HTML</a></li>
+        var i = 0;
+        var tags = '';
+        while(i<items.length){
+          var item = items[i];
+          item = item.trim();
+          var tag = '<li><a href="#!'+item+'" onclick="fetchFile(\''+item+'\')">'+item+'</a></li>';
+          console.log(tag);
+          tags += tag;
+          i += 1;
+        }
+        document.querySelector('#nav').innerHTML = tags;
       })
     })
     
