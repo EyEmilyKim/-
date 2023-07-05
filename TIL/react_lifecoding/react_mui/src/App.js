@@ -11,7 +11,7 @@ function App() {
     <Container fixed>
       <Header />
       <Grid container>
-        <Grid item xs="3">
+        <Grid item xs="4">
           <Nav />
         </Grid>
         <Grid item xs="8">

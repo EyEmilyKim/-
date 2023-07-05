@@ -1,19 +1,36 @@
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogActions from '@mui/material/DialogActions';
+import { useState } from 'react';
 
 export default function Article() {
+  const [open, setOpen] = useState(false);
+
   return (
     <article>
       <h2>Welcome</h2>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum accusamus perferendis dicta cumque sit vel voluptatem ex inventore doloremque reprehenderit. Modi minima autem explicabo odio ducimus. Earum nemo non alias.
-      Nostrum expedita qui odit corrupti beatae autem minus quia, quo repudiandae dolor quae ullam. Dolorem ratione repudiandae incidunt dolorum similique earum asperiores, ad eveniet voluptas laborum amet quis obcaecati exercitationem.
-      Nobis accusamus necessitatibus sunt cupiditate voluptate voluptas dolorum vitae itaque soluta? Provident dolore voluptatibus aliquid dignissimos quis, ex error ab nostrum at enim, minima et ipsum tenetur labore. Dolor, odio.
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab a sapiente nobis recusandae tempora culpa vel! Non reprehenderit unde rem provident ab in aliquam sit. Sit voluptatem dignissimos assumenda nulla.
       <br />
       <ButtonGroup className='margin_right'>
-        <Button variant='outlined'>Create</Button>
+        <Button variant='outlined' onClick={()=>{setOpen(true);}}>Create</Button>
         <Button variant='outlined'>Update</Button>
       </ButtonGroup>
       <Button variant='outlined'>Delete</Button>
+
+      <Dialog open={open}>
+        <DialogTitle>Create</DialogTitle>
+        <DialogContent>
+          <DialogContentText>Hello Create ~~!</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+        <Button variant='outlined'>Create</Button>
+        <Button variant='outlined' onClick={()=>{setOpen(false);}}>Cancel</Button>
+        </DialogActions>
+      </Dialog>
     </article>
   );
 }
