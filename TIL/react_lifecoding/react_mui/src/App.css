@@ -1,3 +1,7 @@
 .margin_right {
   margin-right: 5px;
 }
+
+nav, article {
+  border: 1px solid gray;
+}
