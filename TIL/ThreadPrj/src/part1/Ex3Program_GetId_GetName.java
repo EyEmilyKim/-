@@ -1,6 +1,6 @@
 package part1;
 
-public class Ex3Program {
+public class Ex3Program_GetId_GetName {
 
 	public static void main(String[] args) {
 		

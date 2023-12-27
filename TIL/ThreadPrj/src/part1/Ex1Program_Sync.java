@@ -1,6 +1,6 @@
 package part1;
 
-public class Ex1Program {
+public class Ex1Program_Sync {
 
 	public static void main(String[] args) {
 		print1();

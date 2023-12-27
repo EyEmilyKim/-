@@ -1,6 +1,6 @@
 package part1;
 
-public class Ex4Program {
+public class Ex4Program_Sleep_TimedWaiting {
 
 	public static void main(String[] args) {
 		

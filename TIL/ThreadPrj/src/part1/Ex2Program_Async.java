@@ -1,6 +1,6 @@
 package part1;
 
-public class Ex2Program {
+public class Ex2Program_Async {
 
 	public static void main(String[] args) {
 		
