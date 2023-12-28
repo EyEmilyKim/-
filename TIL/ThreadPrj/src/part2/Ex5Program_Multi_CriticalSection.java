@@ -27,12 +27,12 @@ public class Ex5Program_Multi_CriticalSection {
 		th1.setName("sub1");
 		Thread th2 = new Thread(subPrintAll);
 		th2.setName("sub2");
-//		Thread th3 = new Thread(subPrintAll);
-//		th3.setName("sub3");
+		Thread th3 = new Thread(subPrintAll);
+		th3.setName("sub3");
 
 		th1.start();
 		th2.start();
-//		th3.start();
+		th3.start();
 		
 		Thread th = Thread.currentThread();
 		th.setName("Main");
@@ -47,7 +47,7 @@ public class Ex5Program_Multi_CriticalSection {
 		try {
 			th1.join();
 			th2.join();
-//			th3.join();
+			th3.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

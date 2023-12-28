@@ -14,7 +14,7 @@ public class CharList3 {
 		index = 0;
 	}
 	
-	public void load() {
+	public synchronized void load() {
 		for(int i=0; i<26; i++) {
 			
 			try {
@@ -29,7 +29,7 @@ public class CharList3 {
 		}
 	}
 	
-	public void printAll(int count) {
+	public synchronized void printAll(int count) {
 		Thread th = Thread.currentThread();
 		
 		for(int i=0; i<count; i++) {
