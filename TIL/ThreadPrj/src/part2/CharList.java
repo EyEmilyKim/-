@@ -3,15 +3,18 @@ package part2;
 public class CharList {
 	private char[] list;
 	private int index;
+	private Object indexLock;
 	
 	public CharList() {
+		indexLock = new Object();
 		list = new char[240];
 		for(int i=0; i<240; i++)
 			list[i] = (char)i;
 		index = 0;
 	}
 
-	public synchronized void printNext() {
+//	public synchronized void printNext() {
+	public void printNext() {
 		
 		Thread th = Thread.currentThread();
 
@@ -23,11 +26,11 @@ public class CharList {
 			return;
 		}
 
-//		synchronized (this) {
+		synchronized (indexLock) {
 			System.out.printf("%s[%d] - index : %d, char : %s\n",
 					th.getName(), th.getId(), index, ch);
 			index++;
-//		}
+		}
 	}
 	
 }
