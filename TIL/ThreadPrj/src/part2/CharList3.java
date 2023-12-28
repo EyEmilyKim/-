@@ -1,20 +1,25 @@
 package part2;
 
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class CharList3 {
 	private char[] list;
+	private ReentrantReadWriteLock listLock;
 	private int index;
 	private ReentrantLock indexLock;
 	
 	public CharList3() {
+		listLock = new ReentrantReadWriteLock();
 		indexLock = new ReentrantLock();
 		list = new char[240];
 		
 		index = 0;
 	}
 	
-	public synchronized void load() {
+	public void load() {
+		Thread th = Thread.currentThread();
+		listLock.writeLock().lock();
 		for(int i=0; i<26; i++) {
 			
 			try {
@@ -27,11 +32,14 @@ public class CharList3 {
 			list[i] = (char)('A'+i);
 			
 		}
+		System.out.printf("%s[%d] : load complete\n", th.getName(), th.getId());
+		listLock.writeLock().unlock();
+		
 	}
 	
-	public synchronized void printAll(int count) {
+	public void printAll(int count) {
 		Thread th = Thread.currentThread();
-		
+		listLock.readLock().lock();
 		for(int i=0; i<count; i++) {
 			StringBuilder builder = new StringBuilder();
 			builder.append(list);
@@ -40,6 +48,7 @@ public class CharList3 {
 						th.getName(), th.getId(), ++index, builder.toString());
 			
 		}
+		listLock.readLock().unlock();
 	}
 
 //	public synchronized void printNext() {

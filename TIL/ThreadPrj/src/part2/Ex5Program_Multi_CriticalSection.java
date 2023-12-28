@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class Ex5Program_Multi_CriticalSection {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		
 		Timestamp time1 = new Timestamp(System.currentTimeMillis());
 		
@@ -31,6 +31,9 @@ public class Ex5Program_Multi_CriticalSection {
 		th3.setName("sub3");
 
 		th1.start();
+		
+		Thread.sleep(30);
+		
 		th2.start();
 		th3.start();
 		
