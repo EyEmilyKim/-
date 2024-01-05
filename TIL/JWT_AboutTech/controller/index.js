@@ -59,8 +59,61 @@ const login = (req, res, next) => {
   next();
 };
 
-const accessToken = (req, res) => {};
-const refreshToken = (req, res) => {};
+const accessToken = (req, res) => {
+  console.log("accessToken called");
+  try {
+    const token = req.cookies.accessToken;
+    const data = jwt.verify(token, process.env.ACCESS_SECRET);
+
+    const userData = userDatabase.filter((item) => {
+      return item.email === data.email;
+    })[0];
+    // console.log("verified user : ", userData);
+
+    const { password, ...others } = userData;
+
+    res.status(200).json(others);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+const refreshToken = (req, res) => {
+  // 용도 : accessToken 갱신
+  console.log("refreshToken called");
+  // refreshToken 으로 유저정보 확인
+  try {
+    const token = req.cookies.refreshToken;
+    const data = jwt.verify(token, process.env.REFRESH_SECRET);
+    const userData = userDatabase.filter((item) => {
+      return item.email === data.email;
+    })[0];
+
+    // access Token 발급
+    const accessToken = jwt.sign(
+      {
+        id: userData.id,
+        username: userData.username,
+        email: userData.email,
+      },
+      process.env.ACCESS_SECRET,
+      {
+        expiresIn: "1m",
+        issuer: "About Tech",
+      }
+    );
+    // 새로 발급한 토큰 전달
+    res.cookie("accessToken", accessToken, {
+      secure: false,
+      httpOnly: true,
+    });
+
+    res.status(200).json("Access Token Recreated");
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
 const loginSuccess = (req, res) => {};
 const logout = (req, res) => {};
 
