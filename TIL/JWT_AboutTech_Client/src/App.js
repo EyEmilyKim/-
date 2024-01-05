@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [user, setUser] = useState({});
+  // console.log("isLogin", isLogin);
+  // console.log("user", user);
 
   const accessToken = () => {
     axios({
@@ -70,7 +72,7 @@ function App() {
         {isLogin ? (
           <>
             <h3>{user.username} 님이 로그인했습니다.</h3>
-            <button onClick={logout} className="loginButton">
+            <button onClick={logout} className="logoutButton">
               Logout
             </button>
           </>

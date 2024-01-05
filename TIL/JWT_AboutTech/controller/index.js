@@ -114,8 +114,31 @@ const refreshToken = (req, res) => {
   }
 };
 
-const loginSuccess = (req, res) => {};
-const logout = (req, res) => {};
+const loginSuccess = (req, res) => {
+  console.log("loginSuccess called");
+  try {
+    const token = req.cookies.accessToken;
+    const data = jwt.verify(token, process.env.ACCESS_SECRET);
+
+    const userData = userDatabase.filter((item) => {
+      return item.email === data.email;
+    })[0];
+
+    res.status(200).json(userData);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+const logout = (req, res) => {
+  console.log("logout called");
+  try {
+    res.cookie("accessToken", "");
+    res.status(200).json("Logout Success");
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
 
 module.exports = {
   login,
