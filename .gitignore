@@ -6,3 +6,4 @@ target/
 # STS (Spring Tool Suite)
 *.springBeans
 
+**/*.env
