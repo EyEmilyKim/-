@@ -51,6 +51,7 @@ app.use("/", (req, res, next) => {
   }
 });
 
+// get Session 메뉴
 app.get("/session", (req, res) => {
   console.log("/session requested");
   // session을 받아오는 로직
@@ -73,6 +74,24 @@ app.post("/login", (req, res) => {
     const data = req.session;
     res.status(200).json({ data });
   });
+});
+
+// 로그아웃
+app.post("/logout", (req, res) => {
+  // session destroy;
+  req.session.destroy(() => {
+    res.status(200).json({ message: "logout success" });
+  });
+});
+
+// 로그인 상태 유지
+app.get("/login/success", (req, res) => {
+  try {
+    const data = req.session;
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(403).json("User Not Found");
+  }
 });
 
 app.listen(8122, () => {
