@@ -3,6 +3,7 @@ const session = require("express-session");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const userDB = require("./Database");
+const FileStore = require("session-file-store")(session);
 
 const app = express();
 dotenv.config();
@@ -13,7 +14,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: "http://localhost:3000",
-    method: ["GET", "POST"],
+    methods: ["GET", "POST"],
     credentials: true,
   })
 );
@@ -25,6 +26,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    store: new FileStore(),
     cookie: {
       maxAge: 24 * 60 * 60 * 1000,
       httpOnly: false,
@@ -49,13 +51,14 @@ app.use("/", (req, res, next) => {
   }
 });
 
-app.get("/session", (res, req) => {
+app.get("/session", (req, res) => {
   console.log("/session requested");
   // session을 받아오는 로직
 
   res.status(200).json("session information");
 });
 
+// 로그인
 app.post("/login", (req, res) => {
   const userInfo = userDB.filter((item) => {
     return item.email === req.body.email;
