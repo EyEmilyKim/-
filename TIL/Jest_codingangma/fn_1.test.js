@@ -1,5 +1,9 @@
 const fn = require('./fn');
 
+// 간단한 test 형식
+// toBe
+// not.toBe
+
 test('1은 1이야.', () => {
   expect(1).toBe(1);
 });
