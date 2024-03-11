@@ -7,3 +7,5 @@ target/
 *.springBeans
 
 **/*.env
+**/*.bin
+**/node_modules/
