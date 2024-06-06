@@ -31,3 +31,8 @@
 	display: flex;
 	flex-direction: column;
 }
+
+#emily_visual {
+	background: #313131 url("../images/bg-emily-visual.png") no-repeat center;	
+	height: 171px;
+}

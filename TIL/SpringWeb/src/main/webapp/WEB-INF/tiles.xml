@@ -10,6 +10,7 @@
   </definition>
   <definition name="home.*" extends="layout.common">
     <put-attribute name="main" value="/WEB-INF/view/{1}.jsp" />
+    <put-attribute name="visual" value="/WEB-INF/view/inc/visual.jsp" />
   </definition>
   <definition name="customer.*.*" template="/WEB-INF/view/customer/inc/layout.jsp" extends="layout.common">
     <put-attribute name="aside" value="/WEB-INF/view/customer/inc/aside.jsp" />
