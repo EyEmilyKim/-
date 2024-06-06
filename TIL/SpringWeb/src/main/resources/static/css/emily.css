@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.emily_home {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	gap: 15%;	
+}
+.emily_home h1 {
+	font-family: 맑은 고딕, 고딕, sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	color: #000;
+}
+
+.emily_home h2 {
+	font-family: 맑은 고딕, 고딕, sans-serif;
+	font-size: 18px;
+	color: #000;
+}
+
+.emily_home_main {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.description {
+	margin-bottom: 15px;
+}
+.links {
+	display: flex;
+	flex-direction: column;
+}
