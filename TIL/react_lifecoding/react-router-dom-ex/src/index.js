@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router, Routes, Route, Link, NavLink, useParams } from "react-router-dom"; 
+import { BrowserRouter as Router, Routes, Route, Link, NavLink, useParams } from 'react-router-dom';
 
 function Home() {
   return (
@@ -10,41 +10,45 @@ function Home() {
       <h2>Home</h2>
       Home...
     </div>
-  )
+  );
 }
 
 let contents = [
-  {id:1, title:'HTML', description:'HTML is...'},
-  {id:2, title:'JS', description:'JS is...'},
-  {id:3, title:'REACT', description:'REACT is...'}
-]
+  { id: 1, title: 'HTML', description: 'HTML is...' },
+  { id: 2, title: 'JS', description: 'JS is...' },
+  { id: 3, title: 'REACT', description: 'REACT is...' },
+];
 
-function Topic(){
+function Topic() {
   let params = useParams();
   let topic_id = params.topic_id;
   let selected_topic = {
-    title:'Sorry', 
-    description: 'Not Found'
-  }
-  for(let i=0; i<contents.length; i++){
-    if(contents[i].id === Number(topic_id)){
+    title: 'Sorry',
+    description: 'Not Found',
+  };
+  for (let i = 0; i < contents.length; i++) {
+    if (contents[i].id === Number(topic_id)) {
       selected_topic = contents[i];
       break;
     }
   }
   console.log('params', params, params.topic_id);
   return (
-    <div>
+    <div className="Topic">
       <h3>{selected_topic.title}</h3>
       {selected_topic.description}
     </div>
-  )  
+  );
 }
 
 function Topics() {
   let lis = [];
-  for(let i=0; i<contents.length; i++){
-    lis.push(<li key={contents[i].id}><NavLink to={'/topics/'+contents[i].id}>{contents[i].title}</NavLink></li>)
+  for (let i = 0; i < contents.length; i++) {
+    lis.push(
+      <li key={contents[i].id}>
+        <NavLink to={'/topics/' + contents[i].id}>{contents[i].title}</NavLink>
+      </li>
+    );
   }
   return (
     <div>
@@ -53,10 +57,10 @@ function Topics() {
         {lis}
       </ul>
       <Routes>
-        <Route path=":topic_id" element={<Topic/>}></Route>
+        <Route path=":topic_id" element={<Topic />}></Route>
       </Routes>
     </div>
-  )
+  );
 }
 
 function Contact() {
@@ -65,10 +69,10 @@ function Contact() {
       <h2>Contact</h2>
       Contact...
     </div>
-  )
+  );
 }
 
-function App(){
+function App() {
   return (
     <Router>
       
@@ -87,7 +91,7 @@ function App(){
     </div>
 
     </Router>
-  )
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

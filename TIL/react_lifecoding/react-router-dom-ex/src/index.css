@@ -1,4 +1,18 @@
-.active{
-    background-color: lightblue;
-    text-decoration: none;
+.active {
+  background-color: lightblue;
+  text-decoration: none;
+}
+
+.Topic {
+  background-color: #d3f7f7;
+  margin: 10px;
+  padding: 10px 10px 30px;
+}
+h2 {
+  background-color: rgb(180, 248, 225);
+  padding: 0px 0px 3px 5px;
+}
+.App {
+  /* background-color: yellow; */
+  margin: 0 5px;
 }
