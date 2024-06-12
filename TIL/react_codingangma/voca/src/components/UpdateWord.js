@@ -5,7 +5,7 @@ import useFetch from '../hooks/useFetch';
 export default function UpdateWord() {
   const wordId = useParams().word;
   const word = useFetch(`http://localhost:3001/words/${wordId}`);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(-1);
   useEffect(() => {
     if (word) {
       setSelectedOption(word.day);
