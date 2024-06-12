@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import useFetch from '../hooks/useFetch';
 
 export default function UpdateWord() {
   const wordId = useParams().word;
@@ -13,7 +13,7 @@ export default function UpdateWord() {
   }, [word]);
   const days = useFetch(`http://localhost:3001/days`);
   const [isSaving, setIsSaving] = useState(false);
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const engRef = useRef(null);
   const korRef = useRef(null);
@@ -25,9 +25,9 @@ export default function UpdateWord() {
     if (!isSaving) {
       setIsSaving(true);
       fetch(`http://localhost:3001/words/${wordId}`, {
-        method: "PUT",
+        method: 'PUT',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           eng: engRef.current.value,
@@ -37,10 +37,10 @@ export default function UpdateWord() {
       }).then((res) => {
         if (res.ok) {
           setIsSaving(false);
-          if (window.confirm("수정이 완료되었습니다.\n해당 단어의 수정된 날짜로 이동할까요?")) {
-            history(`/day/${dayRef.current.value}`);
+          if (window.confirm('수정이 완료되었습니다.\n해당 단어의 수정된 날짜로 이동할까요?')) {
+            navigate(`/day/${dayRef.current.value}`);
           } else {
-            history(-1);
+            navigate(-1);
           }
         }
       });
@@ -78,7 +78,7 @@ export default function UpdateWord() {
             opacity: isSaving ? 0.3 : 1,
           }}
         >
-          {isSaving ? "Saving..." : "저장"}
+          {isSaving ? 'Saving...' : '저장'}
         </button>
       </form>
     </>

@@ -1,27 +1,26 @@
-import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
+import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useFetch from '../hooks/useFetch';
 
 export default function CreateDay() {
-  const days = useFetch("http://localhost:3001/days");
-  const dayRef = useRef(null);
-  const history = useNavigate();
+  const days = useFetch('http://localhost:3001/days');
+  const navigate = useNavigate();
 
   function addDay(e) {
     e.preventDefault();
 
     fetch(`http://localhost:3001/days`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         day: days.length + 1,
       }),
     }).then((res) => {
       if (res.ok) {
-        alert("생성이 완료되었습니다");
-        history("/");
+        alert('생성이 완료되었습니다');
+        navigate('/');
       }
     });
   }

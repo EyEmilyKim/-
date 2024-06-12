@@ -1,8 +1,7 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 20px;
@@ -16,8 +15,7 @@ ul {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 a {
@@ -75,7 +73,7 @@ table {
   width: 100%;
 }
 table td {
-  width: 25%;
+  width: 30%;
   height: 70px;
   border: 1px solid #ccc;
   text-align: center;
@@ -83,10 +81,10 @@ table td {
 }
 
 table td:first-child {
-  width: 10%;
+  width: 5%;
 }
 table td:last-child {
-  width: 40%;
+  width: 35%;
 }
 
 .off td {
@@ -106,13 +104,12 @@ table td:last-child {
 }
 
 button {
-  padding: 10px;
   font-weight: bold;
   font-size: 18px;
   cursor: pointer;
   border: 0 none;
   border-radius: 6px;
-  padding: 10px 20px;
+  padding: 10px 15px;
   color: #fff;
   background-color: dodgerblue;
 }
