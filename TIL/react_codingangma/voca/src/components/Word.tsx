@@ -48,7 +48,7 @@ export default function Word({ word: w }: IProps) {
   }
 
   function del() {
-    if (window.confirm('삭제하시겠습니까?')) {
+    if (window.confirm('단어를 삭제하시겠습니까?')) {
       setIsDeleting(true);
       setTimeout(() => {
         fetch(`http://localhost:3001/words/${word.id}`, {
@@ -59,7 +59,7 @@ export default function Word({ word: w }: IProps) {
               ...word,
               id: 0,
             });
-            console.log(`Word() delete done. -> day : ${day}`);
+            console.log(`Word() delete done. -> day : ${day} word : ${word.id}`);
             navigate(`/day/${day}`); // 삭제 후 words 확인용
           }
         });
