@@ -1,5 +1,8 @@
 package main;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -7,6 +10,7 @@ import jakarta.persistence.Persistence;
 import jpabasic.reserve.domain.User;
 
 public class UserUpdateMain {
+	private static Logger logger = LoggerFactory.getLogger(UserUpdateMain.class);
 
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpabegin");
@@ -22,11 +26,13 @@ public class UserUpdateMain {
 			} else {
 				String newName = "이름" + (System.currentTimeMillis() % 100);
 				user.changeName(newName);
+				logger.info("User.changeName 호출함");
 			}
 			
 			transaction.commit();
+			logger.info("EntityTransaction.commit 호출함");
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			logger.error("에러 발생: " + ex.getMessage(), ex);
 			transaction.rollback();
 		} finally {
 			entityManager.close();

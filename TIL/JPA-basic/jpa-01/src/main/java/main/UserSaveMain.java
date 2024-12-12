@@ -2,6 +2,9 @@ package main;
 
 import java.time.LocalDateTime;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -9,6 +12,7 @@ import jakarta.persistence.Persistence;
 import jpabasic.reserve.domain.User;
 
 public class UserSaveMain {
+	private static Logger logger = LoggerFactory.getLogger(UserSaveMain.class);
 
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpabegin");
@@ -20,10 +24,12 @@ public class UserSaveMain {
 			
 			User user = new User("user@user.com", "user", LocalDateTime.now());
 			entityManager.persist(user);
+			logger.info("EntityManager.persist 호출함");
 			
 			transaction.commit();
+			logger.info("EntityTransaction.commit 호출함");
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			logger.error("에러 발생: " + ex.getMessage(), ex);
 			transaction.rollback();
 		} finally {
 			entityManager.close();
